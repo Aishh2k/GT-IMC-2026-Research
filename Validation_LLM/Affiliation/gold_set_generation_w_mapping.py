@@ -73,7 +73,7 @@ def get_relevant_mappings(affiliation: str, max_examples: int = 30) -> str:
 
 BASE_SYSTEM_PROMPT = """You are an expert in data normalization and entity resolution. 
 Your task is to normalize raw affiliation strings to standardized organization names.
-You will be provided with an expert-curated mapping dictionary (ground truth). 
+You will be prov ided with an expert-curated mapping dictionary (ground truth). 
 If an exact match exists, YOU MUST use it.
 
 Rules to follow:
