@@ -8,7 +8,7 @@ load_dotenv()
 
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client[os.getenv("MONGO_DB")]
-collection = db["all_rfc_details_5_2025"]
+collection = db["all_rfc_details_4_2026"]
 
 pipeline = [
     {
@@ -59,5 +59,5 @@ plt.ylabel("Number of RFCs published")
 plt.legend(loc="upper left")
 plt.tight_layout()
 
-plt.savefig("rfc_count_per_year_until_may_2025.png", dpi=300)
+plt.savefig("rfc_count_per_year_until_2026.png", dpi=300)
 plt.close()

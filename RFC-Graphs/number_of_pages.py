@@ -16,7 +16,7 @@ docs = collection.find(
     {
         "_id": 0,
         "publication_year": 1,
-        "number_of_days_from_first_draft": 1,
+        "page_count": 1,
     }
 )
 
@@ -24,23 +24,23 @@ values_by_year = defaultdict(list)
 
 for doc in docs:
     year = doc.get("publication_year")
-    days = doc.get("number_of_days_from_first_draft")
+    pages = doc.get("page_count")
 
-    if year is None or days is None:
+    if year is None or pages is None:
         continue
 
     if year < 2001 or year > 2025:
         continue
 
     try:
-        days = float(days)
+        pages = float(pages)
     except (TypeError, ValueError):
         continue
 
-    if days < 0:
+    if pages < 0:
         continue
 
-    values_by_year[year].append(days)
+    values_by_year[year].append(pages)
 
 years = sorted(values_by_year.keys())
 
@@ -56,7 +56,6 @@ for year in years:
 
 fig, ax = plt.subplots(figsize=(8.2, 5.7))
 
-# shaded interquartile range
 fill = ax.fill_between(
     years,
     p25,
@@ -67,7 +66,6 @@ fill = ax.fill_between(
     zorder=1
 )
 
-# median line
 line, = ax.plot(
     years,
     medians,
@@ -77,7 +75,6 @@ line, = ax.plot(
     zorder=2
 )
 
-# 2020 vertical line in front
 ax.axvline(
     x=2020,
     color="black",
@@ -87,14 +84,14 @@ ax.axvline(
 )
 
 ax.set_xlabel("Year")
-ax.set_ylabel("Days from first draft to RFC publication")
+ax.set_ylabel("Page Count")
 
-# exactly this range
 ax.set_xlim(2000, 2026)
 ax.set_xticks(list(range(2001, 2026)))
 ax.tick_params(axis="x", rotation=90)
 
-# legend order: Median first, then percentile band
+ax.set_ylim(0, 40)
+
 ax.legend(
     handles=[line, fill],
     labels=["Median", "25th-75th percentile"],
@@ -103,5 +100,5 @@ ax.legend(
 )
 
 plt.tight_layout()
-plt.savefig("days_from_first_draft_to_rfc_publication_untill_2026.png", dpi=300, bbox_inches="tight")
+plt.savefig("page_count_per_rfc_may_2025.png", dpi=300, bbox_inches="tight")
 plt.close()

@@ -9,7 +9,7 @@ load_dotenv()
 
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client[os.getenv("MONGO_DB")]
-collection = db["all_rfc_details_5_2025"]
+collection = db["all_rfc_details_4_2026"]
 
 docs = collection.find(
     {},
@@ -90,6 +90,7 @@ ax.set_xlim(2000, 2026)
 ax.set_xticks(list(range(2001, 2026)))
 ax.tick_params(axis="x", rotation=90)
 
+
 ax.legend(
     handles=[line, fill],
     labels=["Median", "25th-75th percentile"],
@@ -98,5 +99,5 @@ ax.legend(
 )
 
 plt.tight_layout()
-plt.savefig("number_of_drafts_per_rfc_may_2025.png", dpi=300, bbox_inches="tight")
+plt.savefig("number_of_drafts_per_rfc_untill_2026.png", dpi=300, bbox_inches="tight")
 plt.close()

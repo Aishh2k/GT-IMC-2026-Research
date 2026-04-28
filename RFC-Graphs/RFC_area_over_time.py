@@ -8,7 +8,7 @@ load_dotenv()
 
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client[os.getenv("MONGO_DB")]
-collection = db["all_rfc_details_5_2025"]
+collection = db["all_rfc_details_4_2026"]
 
 AREA_ORDER = ["other", "rtg", "int", "app", "ops", "sec", "tsv", "rai", "art", "wit"]
 
@@ -146,5 +146,5 @@ ax.text(
 )
 
 plt.tight_layout()
-plt.savefig("rfc_by_area_may_2025.png", dpi=300, bbox_inches="tight")
+plt.savefig("rfc_by_area_untill_2026.png", dpi=300, bbox_inches="tight")
 plt.close()
