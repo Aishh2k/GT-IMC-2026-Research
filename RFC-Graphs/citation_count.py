@@ -8,7 +8,7 @@ load_dotenv()
 
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client[os.getenv("MONGO_DB")]
-collection = db["all_rfc_details_5_2025"]
+collection = db["all_rfc_details_4_2026"]
 
 docs = collection.find(
     {},

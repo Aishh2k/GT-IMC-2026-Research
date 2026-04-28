@@ -94,6 +94,9 @@ ax.set_xlim(2000, 2026)
 ax.set_xticks(list(range(2001, 2026)))
 ax.tick_params(axis="x", rotation=90)
 
+ax.set_axisbelow(False)
+ax.grid(True, which="both", axis="both", color="#9e9e9e", linewidth=1, alpha=0.8, zorder=10)
+
 ax.legend(
     handles=[line, fill],
     labels=["Median", "25th-75th percentile"],
@@ -102,5 +105,5 @@ ax.legend(
 )
 
 plt.tight_layout()
-plt.savefig("requirement_setting_keywords_per_page_untill_2026.png", dpi=300, bbox_inches="tight")
+plt.savefig("requirement_setting_2026", dpi=300, bbox_inches="tight")
 plt.close()

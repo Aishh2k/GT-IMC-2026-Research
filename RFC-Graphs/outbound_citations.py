@@ -29,7 +29,8 @@ for doc in docs:
     if year is None or citations is None:
         continue
 
-    if year < 2001 or year > 2025:
+    # Exclude 2024 and 2025 because structured reference metadata is incomplete
+    if year < 2001 or year > 2023:
         continue
 
     if not isinstance(citations, list):
@@ -82,8 +83,8 @@ ax.axvline(
 ax.set_xlabel("Year")
 ax.set_ylabel("Number of citations")
 
-ax.set_xlim(2000, 2026)
-ax.set_xticks(list(range(2001, 2026)))
+ax.set_xlim(2000, 2024)
+ax.set_xticks(list(range(2001, 2024)))
 ax.tick_params(axis="x", rotation=45)
 
 ax.legend(
@@ -94,5 +95,5 @@ ax.legend(
 )
 
 plt.tight_layout()
-plt.savefig("outbound_citations_to_internet_drafts_per_rfc_untill_2026.png", dpi=300, bbox_inches="tight")
+plt.savefig("outbound_citations_to_internet_drafts_per_rfc_until_2023.png", dpi=300, bbox_inches="tight")
 plt.close()
